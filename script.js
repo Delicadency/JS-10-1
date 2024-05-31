@@ -10,4 +10,13 @@ const createButton = () => {
   button.id = "searchKitty";
   button.innerText = "Wyświetl kotka";
   document.body.appendChild(button);
+  return button;
 };
+const clickedButton = createButton();
+clickedButton.addEventListener("click", () => {
+  const url = "https://api.thecatapi.com/v1/images/search";
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+});
