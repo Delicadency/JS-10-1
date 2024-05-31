@@ -5,3 +5,9 @@ API zwraca tablicę, wyciągnij z niej pierwszy element (jest to obiekt), a adre
 
 Teraz wystarczy dodać dynamicznie element <img> z parametrem src wskazującym na wyciągnięty wcześniej link do zdjęcia kota. Nadaj elementowi <img> atrybut data-test=”img-kitty”. */
 
+const createButton = () => {
+  const button = document.createElement("button");
+  button.id = "searchKitty";
+  button.innerText = "Wyświetl kotka";
+  document.body.appendChild(button);
+};
