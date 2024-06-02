@@ -6,7 +6,16 @@ const createButton = () => {
   return button;
 };
 const clickedButton = createButton();
+const errorInfo = document.createElement("p");
+errorInfo.innerText =
+  "Nie można obecnie wyświetlić obrazu. Spróbuj ponownie później.";
+errorInfo.id = "error-info";
+
 clickedButton.addEventListener("click", () => {
+  const exisitingErrorInfo = document.getElementById("error-info");
+  if (exisitingErrorInfo) {
+    document.body.removeChild(exisitingErrorInfo);
+  }
   const url = "https://api.thecatapi.com/v1/images/search";
   fetch(url)
     .then((response) => response.json())
@@ -19,19 +28,11 @@ clickedButton.addEventListener("click", () => {
         document.body.appendChild(img);
         return img;
       } else {
-        const errorInfo = document.createElement("p");
-        errorInfo.innerText =
-          "Nie można obecnie wyświetlić obrazu. Spróbuj ponownie później.";
         document.body.appendChild(errorInfo);
-        return errorInfo;
       }
     })
     .catch((error) => {
-      const errorInfo = document.createElement("p");
-      errorInfo.innerText =
-        "Nie można obecnie wyświetlić obrazu. Spróbuj ponownie później.";
       document.body.appendChild(errorInfo);
       console.error(error);
-      return errorInfo;
     });
 });
